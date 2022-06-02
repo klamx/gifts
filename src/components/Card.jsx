@@ -1,20 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { StyledButton } from '../App'
+import Form from './Form'
 
 function Card () {
+  const [popUp, setPopUp] = useState(true)
+
   return (
     <CardContainer>
+      {popUp && <Form />}
       <Title>Gifts</Title>
-      <ul>
-        <li>uno</li>
-        <li>dos</li>
-        <li>tres</li>
-      </ul>
+      <ListContainer>
+        <StyledButton m='5px 0 0 0'>Agregar</StyledButton>
+        <Ulist>
+          <Litem>uno</Litem>
+          <Litem>dos</Litem>
+          <Litem>tres</Litem>
+        </Ulist>
+      </ListContainer>
     </CardContainer>
   )
 }
 
-const CardContainer = styled.div`
+export const CardContainer = styled.div`
   @media (max-width: 600px) {
     width: 300px;
     height: 400px;
@@ -27,8 +35,9 @@ const CardContainer = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
 
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.29);
@@ -42,6 +51,24 @@ const CardContainer = styled.div`
 const Title = styled.h1`
   font-size: 3.5rem;
   color: #fff;
+`
+
+const Ulist = styled.ul`
+  width: 100%;
+  padding-top: 5px;
+`
+const Litem = styled.li`
+  list-style: none;
+  font-size: 24px;
+  color: #fff;
+`
+
+const ListContainer = styled.div`
+  height: 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 `
 
 export default Card
